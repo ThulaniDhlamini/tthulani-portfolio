@@ -996,4 +996,36 @@ section {
   .project-card {
     border-radius: 12px;
   }
+
+  /* Draggable form on mobile */
+  .draggable-form {
+    width: 95% !important;
+  }
+}
+
+/* ========== DRAGGABLE FORM STYLES ========== */
+.draggable-form {
+  touch-action: none;
+  transition: box-shadow 0.2s ease;
+  position: absolute !important;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.draggable-form.dragging {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  transition: none;
+}
+
+.drag-handle {
+  cursor: grab;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.contact-form-dialog.open {
+  display: flex !important;
 }

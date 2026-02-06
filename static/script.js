@@ -308,4 +308,90 @@ window.addEventListener('load', function() {
   });
 });
 
+// ========== DRAGGABLE FORM ========== 
+let isDragging = false;
+let currentX;
+let currentY;
+let initialX;
+let initialY;
+
+const draggableForm = document.querySelector('.draggable-form');
+const dragHandle = document.querySelector('.drag-handle');
+
+if (dragHandle && draggableForm) {
+  dragHandle.addEventListener('mousedown', startDrag);
+  dragHandle.addEventListener('touchstart', startDrag);
+}
+
+function startDrag(e) {
+  isDragging = true;
+  
+  if (e.type.includes('touch')) {
+    initialX = e.touches[0].clientX - draggableForm.offsetLeft;
+    initialY = e.touches[0].clientY - draggableForm.offsetTop;
+  } else {
+    initialX = e.clientX - draggableForm.offsetLeft;
+    initialY = e.clientY - draggableForm.offsetTop;
+  }
+  
+  draggableForm.style.cursor = 'grabbing';
+  draggableForm.classList.add('dragging');
+  
+  document.addEventListener('mousemove', drag);
+  document.addEventListener('touchmove', drag);
+  document.addEventListener('mouseup', stopDrag);
+  document.addEventListener('touchend', stopDrag);
+}
+
+function drag(e) {
+  if (!isDragging) return;
+  
+  e.preventDefault();
+  
+  if (e.type.includes('touch')) {
+    currentX = e.touches[0].clientX - initialX;
+    currentY = e.touches[0].clientY - initialY;
+  } else {
+    currentX = e.clientX - initialX;
+    currentY = e.clientY - initialY;
+  }
+  
+  // Keep form within viewport
+  const maxX = window.innerWidth - draggableForm.offsetWidth;
+  const maxY = window.innerHeight - draggableForm.offsetHeight;
+  
+  currentX = Math.max(0, Math.min(currentX, maxX));
+  currentY = Math.max(0, Math.min(currentY, maxY));
+  
+  draggableForm.style.left = currentX + 'px';
+  draggableForm.style.top = currentY + 'px';
+}
+
+function stopDrag() {
+  isDragging = false;
+  draggableForm.classList.remove('dragging');
+  draggableForm.style.cursor = 'auto';
+  
+  document.removeEventListener('mousemove', drag);
+  document.removeEventListener('touchmove', drag);
+  document.removeEventListener('mouseup', stopDrag);
+  document.removeEventListener('touchend', stopDrag);
+}
+
+// Override dialog functions to properly center the form
+window.openDialog = function() {
+  const dialog = document.querySelector('.contact-form-dialog');
+  dialog.style.display = 'flex';
+  
+  // Center the form initially
+  const draggable = document.querySelector('.draggable-form');
+  draggable.style.left = '50%';
+  draggable.style.top = '50%';
+  draggable.style.transform = 'translate(-50%, -50%)';
+};
+
+window.closeDialog = function() {
+  document.querySelector('.contact-form-dialog').style.display = 'none';
+};
+
 console.log('Portfolio loaded successfully!');
