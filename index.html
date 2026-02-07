@@ -80,6 +80,7 @@
           <div class="image-container">
             <div class="gradient-box"></div>
             <i class="fas fa-user-circle"></i>
+            <img src="/static/Untitled design.png" alt="Thulani Dhlamini" width="300" height="500">
           </div>
         </div>
       </div>
@@ -99,6 +100,7 @@
           <p>Semantic markup and responsive design</p>
           <div class="skill-bar">
             <div class="skill-progress" style="width: 95%"></div>
+            <div class="skill-progress" style="width: 99%"></div>
           </div>
         </div>
 
@@ -121,8 +123,20 @@
           <p>Components, hooks, and state management</p>
           <div class="skill-bar">
             <div class="skill-progress" style="width: 85%"></div>
+            <div class="skill-progress" style="width: 75%"></div>
           </div>
         </div>
+        
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fab fa-node-js"></i>
+          <h3>Java</h3>
+          <p>  Restful APIs, and backend development</p>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 95%"></div>
+          </div>
+        </div>
+
 
         <div class="skill-card">
           <div class="skill-icon">
@@ -132,6 +146,7 @@
           <p>Express, APIs, and backend development</p>
           <div class="skill-bar">
             <div class="skill-progress" style="width: 88%"></div>
+            <div class="skill-progress" style="width: 70%"></div>
           </div>
         </div>
 
@@ -143,6 +158,7 @@
           <p>MongoDB, MySQL, PostgreSQL</p>
           <div class="skill-bar">
             <div class="skill-progress" style="width: 82%"></div>
+            <div class="skill-progress" style="width: 99%"></div>
           </div>
         </div>
 
@@ -290,6 +306,7 @@
               <div>
                 <h4>Email</h4>
                 <a href="mailto:thulani@example.com">thulani@example.com</a>
+                <a href="mailto:thulani@example.com">thulani@imentorufoundation.org.za</a>
               </div>
             </div>
             <div class="contact-item">
@@ -297,6 +314,7 @@
               <div>
                 <h4>Phone</h4>
                 <a href="tel:+27123456789">+27 (0)12 345 6789</a>
+                <a href="tel:+27123456789">+27 (0)63 110 4981</a>
               </div>
             </div>
             <div class="contact-item">
@@ -313,6 +331,41 @@
             <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
             <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
           </div>
+              </div>
+            </div>
+
+            <div class="contact-form-dialog" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; justify-content: center; align-items: center;">
+              <div class="draggable-form" style="background: white; padding: 0; border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); width: 90%; max-width: 500px; position: absolute;">
+              <div class="drag-handle" style="background: linear-gradient(135deg, #6366f1, #8b5cf6); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; border-radius: 10px 10px 0 0; cursor: grab; user-select: none;">
+                <h3 style="margin: 0; color: white; font-size: 18px;">Send Me a Message</h3>
+                <span onclick="closeDialog()" style="cursor: pointer; font-size: 28px; color: white; line-height: 1;">&times;</span>
+              </div>
+              <div style="padding: 30px;">
+              <form onsubmit="handleSubmit(event)">
+                <div style="margin-bottom: 15px;">
+                <label for="contactName">Name:</label>
+                <input type="text" id="contactName" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                <label for="contactEmail">Email:</label>
+                <input type="email" id="contactEmail" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                <label for="contactMessage">Message:</label>
+                <textarea id="contactMessage" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; height: 120px;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+              </form>
+              </div>
+              </div>
+            </div>
+
+            <div class="dialog-trigger">
+              <button class="btn btn-primary" onclick="openDialog()">Open Contact Form</button>
+            </div>
+
+        <div class="dialog-trigger">
+          <button class="btn btn-primary" onclick="openDialog()">Open Contact Form</button>
         </div>
 
         <form class="contact-form">
@@ -327,6 +380,25 @@
           </div>
           <button type="submit" class="btn btn-primary">Send Message</button>
         </form>
+        <script>
+        function openDialog() {
+          document.querySelector('.contact-form-dialog').style.display = 'block';
+        }
+
+        function closeDialog() {
+          document.querySelector('.contact-form-dialog').style.display = 'none';
+        }
+
+        function handleSubmit(event) {
+          event.preventDefault();
+          const name = document.getElementById('contactName').value;
+          const email = document.getElementById('contactEmail').value;
+          document.querySelector('.name-display').textContent = name;
+          document.querySelector('.email-display').textContent = email;
+          alert('Message sent!');
+          closeDialog();
+        }
+        </script>
       </div>
     </div>
   </section>
@@ -335,6 +407,7 @@
   <footer class="footer">
     <div class="container">
       <p>&copy; 2026 Thulani Dhlamini. All rights reserved.</p>
+      <p>&copy; 2025 Thulani Dhlamini. All rights reserved.</p>
       <p>Designed with <i class="fas fa-heart"></i> and built with code</p>
     </div>
   </footer>
